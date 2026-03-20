@@ -1,0 +1,63 @@
+{
+  "name": "content-for-machines",
+  "version": "0.1.0",
+  "description": "Pay-per-access content gating for AI agents using the Machine Payments Protocol",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./detect": {
+      "types": "./dist/detect.d.ts",
+      "import": "./dist/detect.js"
+    },
+    "./preview": {
+      "types": "./dist/preview.d.ts",
+      "import": "./dist/preview.js"
+    },
+    "./paywall": {
+      "types": "./dist/paywall.d.ts",
+      "import": "./dist/paywall.js"
+    },
+    "./llm-script": {
+      "types": "./dist/llm-script.d.ts",
+      "import": "./dist/llm-script.js"
+    },
+    "./fingerprint": {
+      "types": "./dist/fingerprint.d.ts",
+      "import": "./dist/fingerprint.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
+    "./next": {
+      "types": "./dist/next/index.d.ts",
+      "import": "./dist/next/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "mppx": ">=0.1.0",
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true }
+  },
+  "devDependencies": {
+    "mppx": "^0.1.0",
+    "react": "^19",
+    "@types/react": "^19",
+    "typescript": "^5.7"
+  },
+  "keywords": ["mpp", "pay-per-access", "ai", "agents", "content-gating", "machine-payments"],
+  "license": "MIT"
+}
