@@ -11,20 +11,22 @@ export interface MiddlewareConfig {
 }
 
 /**
- * Create a Next.js middleware handler that detects AI agents
+ * Create a Next.js proxy handler that detects AI agents
  * and rewrites their requests to the payment-gated API route.
  *
- * Usage in middleware.ts:
+ * Usage in proxy.ts:
  * ```ts
- * import { createContentAccessMiddleware } from 'content-access-for-machines/next'
+ * import { createContentAccessProxy } from 'content-for-machines/next'
  *
- * const handle = createContentAccessMiddleware({ config })
- * export function middleware(request: NextRequest) {
+ * const handle = createContentAccessProxy({ config })
+ * export function proxy(request: NextRequest) {
  *   return handle(request)
  * }
  * ```
  */
-export function createContentAccessMiddleware(middlewareConfig: MiddlewareConfig) {
+export const createContentAccessMiddleware = createContentAccessProxy
+
+export function createContentAccessProxy(middlewareConfig: MiddlewareConfig) {
   const {
     config,
     blogPathPrefix = '/blog/',

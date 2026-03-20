@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { detectAgent } from 'content-for-machines/detect'
 import contentAccessConfig from './cam.config'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   // Only process blog post routes
