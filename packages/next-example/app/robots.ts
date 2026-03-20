@@ -3,34 +3,35 @@ import { baseUrl } from 'app/sitemap'
 export default function robots() {
   return {
     rules: [
+      // Humans and search engines: full access
       {
         userAgent: '*',
+        allow: '/',
       },
-      {
-        userAgent: 'GPTBot',
+      // AI crawlers: block /blog/ HTML pages, allow /api/post/ for paid access
+      ...[
+        'GPTBot',
+        'ChatGPT-User',
+        'ClaudeBot',
+        'Claude-Web',
+        'CCBot',
+        'Google-Extended',
+        'Amazonbot',
+        'PerplexityBot',
+        'Bytespider',
+        'Diffbot',
+        'ImagesiftBot',
+        'cohere-ai',
+        'AI2Bot',
+        'OAI-SearchBot',
+        'PetalBot',
+        'FacebookBot',
+        'AppleBot-Extended',
+      ].map((bot) => ({
+        userAgent: bot,
         disallow: '/blog/',
-        comment: 'AI crawlers: access content via /api/post/[slug] using MPP (https://mpp.dev)',
-      },
-      {
-        userAgent: 'ClaudeBot',
-        disallow: '/blog/',
-      },
-      {
-        userAgent: 'CCBot',
-        disallow: '/blog/',
-      },
-      {
-        userAgent: 'Google-Extended',
-        disallow: '/blog/',
-      },
-      {
-        userAgent: 'Amazonbot',
-        disallow: '/blog/',
-      },
-      {
-        userAgent: 'PerplexityBot',
-        disallow: '/blog/',
-      },
+        allow: '/api/post/',
+      })),
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
   }
