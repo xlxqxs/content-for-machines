@@ -1,6 +1,12 @@
 import { getBlogPosts } from 'app/blog/utils'
 
-export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+function resolveBaseUrl() {
+  const env = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL
+  if (!env) return 'http://localhost:3000'
+  return env.startsWith('http') ? env : `https://${env}`
+}
+
+export const baseUrl = resolveBaseUrl()
 
 export default async function sitemap() {
   let blogs = getBlogPosts().map((post) => ({
