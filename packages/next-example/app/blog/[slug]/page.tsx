@@ -30,9 +30,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
+  const apiEndpoint = contentAccessConfig.llmScript?.apiEndpoint ?? '/api/post'
+
   return {
     title,
     description,
+    other: {
+      'x-content-access': `payment-required; endpoint=${apiEndpoint}/${post.slug}; protocol=mpp; price=${post.metadata.price || contentAccessConfig.payment.defaultAmount}`,
+    },
     openGraph: {
       title,
       description,
